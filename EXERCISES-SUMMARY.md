@@ -1,6 +1,6 @@
-# Copilot CLI Workshop — Requested Work and Project Output
+# Copilot CLI Workshop — Requested Work and Todo App Output
 
-This file maps each exercise to what the lesson asked for and what was actually produced in this Task Manager project.
+This file maps each exercise to what the lesson asked for and what was actually produced in this Todo app project.
 
 ## Database setup
 
@@ -11,7 +11,7 @@ pnpm install
 pnpm db:setup
 ```
 
-`pnpm db:setup` runs `pnpm db:push` followed by `pnpm db:seed`. A valid `DATABASE_URL` must be configured in `.env`.
+`pnpm db:setup` runs `pnpm db:push` followed by `pnpm db:seed`. A valid `DATABASE_URL` must be configured in `.env`. The command was run during this setup: seeding completed successfully, while Drizzle detected existing tables with data-loss implications and the schema push was not approved. Review the warning before approving any destructive schema change.
 
 For a clean reset:
 
@@ -36,25 +36,25 @@ pnpm db:setup
 
 **What the exercise asked:** Retrieve the filtering issue, plan the remaining data-layer and UI work, implement filtering, add tests, and review the resulting diff.
 
-**Project output:** Implemented a local-first Task Manager in `client/nextjs/src/app/page.tsx` with task creation, descriptions, priorities, due dates, search, all/active/completed filters, completion toggles, deletion, counters, empty states, and browser localStorage persistence. The original Tailspin Toys game/category/publisher filtering feature was not applicable to this project.
+**Project output:** Implemented a local-first Todo app in `client/nextjs/src/app/page.tsx` with todo creation, notes, priorities, due dates, search, all/active/completed filters, completion toggles, deletion, counters, empty states, and browser localStorage persistence. The original Tailspin Toys game/category/publisher filtering feature was not applicable to this project.
 
 ## Exercise 4 — Playwright MCP testing
 
 **What the exercise asked:** Register the Playwright MCP server, start the website, use a browser to test filtering, and report the observed results.
 
-**Project output:** Started the Next.js app at `http://localhost:3000` and confirmed it returned HTTP 200. The Task Manager controls include accessible labels and state attributes suitable for browser testing. Full Playwright MCP testing was not completed because no active Playwright MCP session was available in this environment; the lesson’s Astro URL and game-filter scenarios do not exist in this project.
+**Project output:** Installed `@playwright/test` and Chromium, added `client/nextjs/playwright.config.ts` and `client/nextjs/tests/todo.spec.ts`, and passed a browser flow covering add, search, completion filtering, high contrast, and reload persistence. The test runs against `http://localhost:3000`; the original lesson’s Astro URL and game-filter scenarios do not exist in this project.
 
 ## Exercise 5 — Using agent skills
 
 **What the exercise asked:** Inspect a contribution skill, run tests, create logical commits, push a branch, and open a pull request with the required sections.
 
-**Project output:** Added `.github/skills/make-contribution/SKILL.md` with rules for validation, logical commits, PR content, changed-file summaries, implementation snippets, and secret exclusion. Created local commits `f5fdda6` and `4b97ca4`. No PR was opened because the configured GitHub remote is empty and has no usable default branch.
+**Project output:** Added `.github/skills/make-contribution/SKILL.md` with rules for validation, logical commits, PR content, changed-file summaries, implementation snippets, and secret exclusion. Created local commits `f5fdda6` and `4b97ca4`; the Todo conversion and browser tests are currently pending commit. No PR was opened because the configured GitHub remote is empty and has no usable default branch.
 
 ## Exercise 6 — Custom agents
 
 **What the exercise asked:** Select an accessibility agent, review the site, implement persisted high-contrast mode, add end-to-end tests, and create a PR.
 
-**Project output:** Added `.github/agents/accessibility.md` with WCAG, semantic HTML, keyboard navigation, focus, contrast, preference persistence, and testing guidance. Added a high-contrast toggle to the Task Manager with `aria-pressed` state and localStorage persistence, plus high-contrast CSS variables in `globals.css`. A PR and dedicated browser tests were not created because GitHub and Playwright MCP were unavailable.
+**Project output:** Added `.github/agents/accessibility.md` with WCAG, semantic HTML, keyboard navigation, focus, contrast, preference persistence, and testing guidance. Added a high-contrast toggle to the Todo app with `aria-pressed` state and localStorage persistence, plus high-contrast CSS variables in `globals.css`. A PR and dedicated browser tests were not created because GitHub and Playwright MCP were unavailable.
 
 ## Exercise 7 — Slash commands
 
@@ -66,26 +66,27 @@ pnpm db:setup
 
 **What the exercise asked:** Set up Azure and Microsoft Foundry, export the Tailspin Toys catalog, deploy a model, build a hosted Backer Concierge, connect it through a secure proxy and chat widget, test it, and clean up Azure resources.
 
-**Project output:** Not executed. This Task Manager project has no Tailspin Toys catalog, Foundry agent, Azure Functions proxy, or Astro chat widget. No Azure resources, credentials, tokens, or billable deployments were created.
+**Project output:** Not executed. This Todo app has no Tailspin Toys catalog, Foundry agent, Azure Functions proxy, or Astro chat widget. No Azure resources, credentials, tokens, or billable deployments were created.
 
 ## Exercise 9 — Review and next steps
 
 **What the exercise asked:** Review the workshop, document useful slash commands and best practices, and identify practical next steps.
 
-**Project output:** Added this consolidated mapping of lesson requirements to project results. The Task Manager was type-checked and production-built successfully, and formatting was checked with `git diff --check`.
+**Project output:** Added this consolidated mapping of lesson requirements to project results. The Todo app was type-checked, browser-tested, and production-built successfully, and formatting was checked with `git diff --check`.
 
 ## Validation completed
 
 ```powershell
 pnpm --filter nextjs typecheck
 pnpm --filter nextjs build
+pnpm --filter nextjs test:e2e
 git diff --check
 ```
 
 ## Main project files produced
 
 ```text
-client/nextjs/src/app/page.tsx       Task Manager UI and behavior
+client/nextjs/src/app/page.tsx       Todo app UI and behavior
 client/nextjs/src/app/globals.css    Theme and high-contrast styles
 .github/copilot-instructions.md     Repository Copilot instructions
 .github/skills/make-contribution/   Pull request workflow skill

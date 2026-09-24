@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
+    "test:e2e": "playwright test",
     "build:cf": "opennextjs-cloudflare",
     "deploy:cf": "wrangler pages deploy .open-next/.deploy",
     "deploy:vercel": "vercel",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.20.1",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "4.3.2",
     "@types/node": "22.20.0",
     "@types/react": "19.2.17",

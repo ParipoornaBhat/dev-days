@@ -23,9 +23,9 @@ thunder-stack/
 
 ## 🚀 Getting Started
 
-## Task Manager
+## Todo App
 
-The web client includes a local-first Task Manager at `/`. It supports creating tasks with descriptions, priorities, and due dates; searching and filtering tasks; completing or deleting tasks; and persisting data in browser local storage. The high-contrast control in the header also persists across reloads.
+The web client includes a local-first Todo app at `/`. It supports adding todos with notes, priorities, and due dates; searching and filtering todos; completing or deleting todos; and persisting data in browser local storage. The high-contrast control in the header also persists across reloads.
 
 ### 📋 Prerequisites
 - **NodeJS** (v22+ recommended for pnpm 11)

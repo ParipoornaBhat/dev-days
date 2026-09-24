@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Task Manager workspace.
- * Provides a focused, local-first task list with search, filtering, and task actions.
+ * Todo workspace.
+ * Provides a focused, local-first todo list with search, filtering, and todo actions.
  */
 
 import {
@@ -37,7 +37,7 @@ interface Task {
 
 const initialTasks: Task[] = [
   {
-    id: "welcome-task",
+    id: "welcome-todo",
     title: "Make a plan for the week",
     description: "Break your biggest goals into small, achievable steps.",
     priority: "high",
@@ -46,8 +46,8 @@ const initialTasks: Task[] = [
     createdAt: new Date().toISOString(),
   },
   {
-    id: "demo-task",
-    title: "Explore the task manager",
+    id: "demo-todo",
+    title: "Explore the todo list",
     description: "Try searching, filtering, and completing a task.",
     priority: "medium",
     dueDate: "",
@@ -85,12 +85,12 @@ export default function HomePage() {
   });
 
   useEffect(() => {
-    const savedTasks = window.localStorage.getItem("task-manager-tasks");
+    const savedTasks = window.localStorage.getItem("todo-app-items");
     if (savedTasks) {
       try {
         setTasks(JSON.parse(savedTasks) as Task[]);
       } catch {
-        window.localStorage.removeItem("task-manager-tasks");
+        window.localStorage.removeItem("todo-app-items");
       }
     }
   }, []);
@@ -100,7 +100,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("task-manager-tasks", JSON.stringify(tasks));
+    window.localStorage.setItem("todo-app-items", JSON.stringify(tasks));
   }, [tasks]);
 
   const filteredTasks = useMemo(() => {
@@ -161,10 +161,10 @@ export default function HomePage() {
           <div>
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
               <Sparkles className="h-4 w-4" />
-              Focus workspace
+              Daily todo list
             </div>
             <h1 className="text-4xl font-black tracking-tight sm:text-5xl">
-              Your tasks, <span className="text-primary">organized.</span>
+              Your todos, <span className="text-primary">organized.</span>
             </h1>
             <p className="mt-3 max-w-xl text-muted-foreground">
               Capture what matters, keep momentum, and finish your day with clarity.
@@ -190,15 +190,15 @@ export default function HomePage() {
               className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 hover:bg-primary/90"
             >
               <Plus className="h-5 w-5" />
-              New task
+              Add todo
             </button>
           </div>
         </header>
 
         <section className="mb-8 grid gap-4 sm:grid-cols-3">
-          <StatCard label="Total tasks" value={tasks.length} icon={<ClipboardList />} />
-          <StatCard label="In progress" value={activeCount} icon={<Circle />} />
-          <StatCard label="Completed" value={completedCount} icon={<CheckCircle2 />} />
+          <StatCard label="Total todos" value={tasks.length} icon={<ClipboardList />} />
+          <StatCard label="To do" value={activeCount} icon={<Circle />} />
+          <StatCard label="Done" value={completedCount} icon={<CheckCircle2 />} />
         </section>
 
         <section className="rounded-3xl border border-border/60 bg-card/80 p-4 shadow-xl shadow-primary/5 sm:p-6">
@@ -208,7 +208,7 @@ export default function HomePage() {
               <input
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
-                placeholder="Search tasks..."
+                placeholder="Search todos..."
                 className="h-11 w-full rounded-xl border border-input bg-background pl-10 pr-4 text-sm outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
@@ -289,7 +289,7 @@ export default function HomePage() {
               <Archive className="mb-3 h-10 w-10 text-muted-foreground/50" />
               <h2 className="font-semibold">No tasks found</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Try another search or add a new task to get started.
+                Try another search or add a todo to get started.
               </p>
             </div>
           )}
@@ -301,7 +301,7 @@ export default function HomePage() {
           <form onSubmit={addTask} className="w-full max-w-lg rounded-3xl border border-border bg-card p-6 shadow-2xl">
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold">Create a task</h2>
+                <h2 className="text-xl font-bold">Add a todo</h2>
                 <p className="mt-1 text-sm text-muted-foreground">What would you like to accomplish?</p>
               </div>
               <button type="button" onClick={() => setIsFormOpen(false)} className="rounded-lg p-2 text-muted-foreground hover:bg-accent">
@@ -314,13 +314,13 @@ export default function HomePage() {
                 required
                 value={newTask.title}
                 onChange={(event) => setNewTask({ ...newTask, title: event.target.value })}
-                placeholder="Task title"
+                placeholder="Todo title"
                 className="h-12 w-full rounded-xl border border-input bg-background px-4 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
               <textarea
                 value={newTask.description}
                 onChange={(event) => setNewTask({ ...newTask, description: event.target.value })}
-                placeholder="Add a description (optional)"
+                placeholder="Add a note (optional)"
                 rows={3}
                 className="w-full resize-none rounded-xl border border-input bg-background p-4 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
@@ -349,7 +349,7 @@ export default function HomePage() {
               </div>
             </div>
             <button type="submit" className="mt-6 h-12 w-full rounded-xl bg-primary font-semibold text-primary-foreground transition hover:bg-primary/90">
-              Add task
+              Add todo
             </button>
           </form>
         </div>
