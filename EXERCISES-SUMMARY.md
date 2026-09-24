@@ -1,80 +1,78 @@
-# Copilot CLI Workshop and Task Manager Summary
+# Copilot CLI Workshop — Requested Work and Project Output
 
-This file records the work completed for each exercise in this repository.
+This file maps each exercise to what the lesson asked for and what was actually produced in this Task Manager project.
 
 ## Database setup
 
-From the repository root:
+Run these commands from `D:\Codes\Codes\dev-days`:
 
 ```powershell
 pnpm install
 pnpm db:setup
 ```
 
-`pnpm db:setup` applies the current Drizzle schema with `db:push`, then seeds the database with `db:seed`.
+`pnpm db:setup` runs `pnpm db:push` followed by `pnpm db:seed`. A valid `DATABASE_URL` must be configured in `.env`.
 
-For a clean local database reset:
+For a clean reset:
 
 ```powershell
 pnpm db:reset
 pnpm db:setup
 ```
 
-The database commands require a valid `DATABASE_URL` in `.env`. The scaffold creates `.env` from `.env.example`; update the connection value before running database commands.
-
 ## Exercise 1 — Installing Copilot CLI
 
-- Prepared the repository for Copilot CLI-driven development and verified the project-root workflow.
-- Created the application workspace with the THUNDER Stack scaffold.
-- Kept all project work inside `D:\Codes\Codes\dev-days`.
+**What the exercise asked:** Install and authenticate Copilot CLI, open the repository from its root, and prepare the project for the workshop.
+
+**Project output:** The empty repository was scaffolded with `npx create-thunder-stack .`, creating a THUNDER Stack monorepo with a Next.js client, Expo client, Hono server, Drizzle database package, shared package, environment templates, and workspace scripts. Dependencies were installed successfully with pnpm.
 
 ## Exercise 2 — Custom instructions
 
-- Added `.github/copilot-instructions.md` with project context and coding standards.
-- Added rules requiring TSDoc comments for exported functions and file-level purpose headers.
-- Documented TypeScript, accessibility, testing, validation, and secret-handling expectations.
+**What the exercise asked:** Explore repository and path-scoped instruction files, generate a data helper, add project-wide documentation standards, and keep the instruction changes with the generated code.
+
+**Project output:** Added `.github/copilot-instructions.md` containing project context, TypeScript conventions, accessibility guidance, testing rules, validation commands, TSDoc requirements, file-header requirements, and secret-handling rules. A Tailspin Toys `publishers.ts` helper was not created because this project is a Task Manager rather than the catalog application described by the lesson.
 
 ## Exercise 3 — Adding project features
 
-- Built a local-first Task Manager at the Next.js root route `/`.
-- Added task creation with title, description, priority, and due date.
-- Added search, all/active/completed filters, completion toggles, deletion, counters, and localStorage persistence.
+**What the exercise asked:** Retrieve the filtering issue, plan the remaining data-layer and UI work, implement filtering, add tests, and review the resulting diff.
+
+**Project output:** Implemented a local-first Task Manager in `client/nextjs/src/app/page.tsx` with task creation, descriptions, priorities, due dates, search, all/active/completed filters, completion toggles, deletion, counters, empty states, and browser localStorage persistence. The original Tailspin Toys game/category/publisher filtering feature was not applicable to this project.
 
 ## Exercise 4 — Playwright MCP testing
 
-- Started the Next.js app successfully at `http://localhost:3000` and confirmed an HTTP 200 response.
-- Added accessible labels and state attributes to the interactive controls for browser testing.
-- Full Playwright MCP testing was not executed because this environment does not have an active Playwright MCP session; the app is ready for testing once the server is registered.
+**What the exercise asked:** Register the Playwright MCP server, start the website, use a browser to test filtering, and report the observed results.
 
-## Exercise 5 — Agent skills
+**Project output:** Started the Next.js app at `http://localhost:3000` and confirmed it returned HTTP 200. The Task Manager controls include accessible labels and state attributes suitable for browser testing. Full Playwright MCP testing was not completed because no active Playwright MCP session was available in this environment; the lesson’s Astro URL and game-filter scenarios do not exist in this project.
 
-- Added `.github/skills/make-contribution/SKILL.md`.
-- Documented validation-before-PR, logical commit grouping, PR body requirements, and secret exclusion.
-- Created the local feature commit `Build local-first task manager app`.
+## Exercise 5 — Using agent skills
+
+**What the exercise asked:** Inspect a contribution skill, run tests, create logical commits, push a branch, and open a pull request with the required sections.
+
+**Project output:** Added `.github/skills/make-contribution/SKILL.md` with rules for validation, logical commits, PR content, changed-file summaries, implementation snippets, and secret exclusion. Created local commits `f5fdda6` and `4b97ca4`. No PR was opened because the configured GitHub remote is empty and has no usable default branch.
 
 ## Exercise 6 — Custom agents
 
-- Added `.github/agents/accessibility.md` with WCAG, keyboard, contrast, semantics, and testing guidance.
-- Implemented a persisted high-contrast mode toggle.
-- Added high-contrast CSS variables while preserving the existing light and dark themes.
+**What the exercise asked:** Select an accessibility agent, review the site, implement persisted high-contrast mode, add end-to-end tests, and create a PR.
+
+**Project output:** Added `.github/agents/accessibility.md` with WCAG, semantic HTML, keyboard navigation, focus, contrast, preference persistence, and testing guidance. Added a high-contrast toggle to the Task Manager with `aria-pressed` state and localStorage persistence, plus high-contrast CSS variables in `globals.css`. A PR and dedicated browser tests were not created because GitHub and Playwright MCP were unavailable.
 
 ## Exercise 7 — Slash commands
 
-- Prepared the repository for `/diff`, `/review`, `/context`, `/compact`, `/model`, `/session`, `/share`, and `/delegate`.
-- `/delegate` and `/share gist` require an authenticated Copilot/GitHub session and were not run here.
-- The project can be reviewed locally with `git diff` and the validation commands below.
+**What the exercise asked:** Use `/share`, `/context`, `/compact`, `/model`, and optionally `/delegate` to inspect, manage, share, or delegate the Copilot CLI session.
+
+**Project output:** The repository is prepared for `/diff`, `/review`, `/context`, `/compact`, `/model`, `/session`, `/share`, and `/delegate`. No gist or cloud-agent task was created because those operations require an authenticated external Copilot/GitHub session.
 
 ## Exercise 8 — Optional Microsoft Foundry series
 
-- Not executed because it requires Azure authentication, a Foundry project, model deployment, and billable cloud resources.
-- No Azure resources, credentials, tokens, or Foundry configuration were created.
-- The current application is a Task Manager and does not contain the Tailspin Toys catalog required by that optional series.
+**What the exercise asked:** Set up Azure and Microsoft Foundry, export the Tailspin Toys catalog, deploy a model, build a hosted Backer Concierge, connect it through a secure proxy and chat widget, test it, and clean up Azure resources.
+
+**Project output:** Not executed. This Task Manager project has no Tailspin Toys catalog, Foundry agent, Azure Functions proxy, or Astro chat widget. No Azure resources, credentials, tokens, or billable deployments were created.
 
 ## Exercise 9 — Review and next steps
 
-- Added this consolidated workshop record and database setup instructions.
-- Verified the Next.js typecheck and production build.
-- The next practical steps are to configure Playwright MCP, run browser checks, and connect a populated GitHub remote if a PR is required.
+**What the exercise asked:** Review the workshop, document useful slash commands and best practices, and identify practical next steps.
+
+**Project output:** Added this consolidated mapping of lesson requirements to project results. The Task Manager was type-checked and production-built successfully, and formatting was checked with `git diff --check`.
 
 ## Validation completed
 
@@ -84,3 +82,14 @@ pnpm --filter nextjs build
 git diff --check
 ```
 
+## Main project files produced
+
+```text
+client/nextjs/src/app/page.tsx       Task Manager UI and behavior
+client/nextjs/src/app/globals.css    Theme and high-contrast styles
+.github/copilot-instructions.md     Repository Copilot instructions
+.github/skills/make-contribution/   Pull request workflow skill
+.github/agents/accessibility.md     Accessibility custom agent
+package.json                         Workspace and database commands
+EXERCISES-SUMMARY.md                 This exercise-to-output summary
+```
