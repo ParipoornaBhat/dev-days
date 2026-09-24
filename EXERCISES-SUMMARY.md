@@ -26,6 +26,8 @@ pnpm db:setup
 
 **Project output:** The empty repository was scaffolded with `npx create-thunder-stack .`, creating a THUNDER Stack monorepo with a Next.js client, Expo client, Hono server, Drizzle database package, shared package, environment templates, and workspace scripts. Dependencies were installed successfully with pnpm.
 
+The Expo client now also has a native Todo home screen at `client/expo/app/index.tsx`.
+
 ## Exercise 2 — Custom instructions
 
 **What the exercise asked:** Explore repository and path-scoped instruction files, generate a data helper, add project-wide documentation standards, and keep the instruction changes with the generated code.
@@ -87,6 +89,7 @@ git diff --check
 
 ```text
 client/nextjs/src/app/page.tsx       Todo app UI and behavior
+client/expo/app/index.tsx            Native Expo Todo UI and behavior
 client/nextjs/src/app/globals.css    Theme and high-contrast styles
 .github/copilot-instructions.md     Repository Copilot instructions
 .github/skills/make-contribution/   Pull request workflow skill

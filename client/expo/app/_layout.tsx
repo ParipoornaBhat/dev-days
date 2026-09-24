@@ -142,8 +142,9 @@ export default function RootLayout() {
     if (isLoading) return;
 
     const inAuthGroup = segments[0] === "(auth)";
+    const inTodoHome = segments[0] === undefined;
 
-    if (!token && !inAuthGroup) {
+    if (!token && !inAuthGroup && !inTodoHome) {
       // Redirect to login if not authenticated
       router.replace("/(auth)/login");
     } else if (token && inAuthGroup) {
@@ -194,6 +195,7 @@ export default function RootLayout() {
   return (
     <AuthContext.Provider value={{ token, user, activeRole, permissions, roles, login, logout, refreshProfile, switchRole, isLoading }}>
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(home)" options={{ headerShown: false }} />
       </Stack>
