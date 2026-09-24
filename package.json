@@ -17,6 +17,7 @@
     "db:generate": "pnpm --filter @dev-days/db db:generate",
     "db:migrate": "pnpm --filter @dev-days/db db:migrate",
     "db:seed": "pnpm --filter @dev-days/db db:seed",
+    "db:setup": "pnpm db:push && pnpm db:seed",
     "db:reset": "pnpm --filter @dev-days/db db:reset",
     "db:rollback": "pnpm --filter @dev-days/db db:rollback",
     "db:status": "pnpm --filter @dev-days/db db:status",
